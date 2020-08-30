@@ -1,4 +1,8 @@
+import { AuthService } from './services/AuthService/authentication.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { User } from './model/user/user';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ang-eobrazovanje';
+
+	currentUser: User;
+
+
+	constructor(
+		private router: Router,
+		private authenticationService: AuthService
+	) {
+		this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
+	}
+
+	logout() {
+		this.authenticationService.logout();
+		this.router.navigate(['/']);
+	}
+
+
 }

@@ -1,0 +1,21 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Delete</th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="courses?.length != 0">
+		<tr *ngFor="let course of courses">
+			<td>{{ course.id }}</td>
+			<td>{{ course.name }}</td>
+			<td><button id={{course.id}} (click)='handleClick($event)' type=”button”>Button</button></td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="courses?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>

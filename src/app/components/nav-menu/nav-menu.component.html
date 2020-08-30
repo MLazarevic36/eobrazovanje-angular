@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="role === 'ADMIN'">
+	<a class="navbar-brand" routerLink="/admin">Home</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Add
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" routerLink="/admin/add-student">Student</a>
+			<a class="dropdown-item" routerLink="/admin/add-teacher">Teacher</a>
+			<a class="dropdown-item" routerLink="/admin/add-admin">Admin</a>
+		  </div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				View
+			</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" routerLink="/admin/users">Users</a>
+			<a class="dropdown-item" routerLink="/admin/students">Students</a>
+			<a class="dropdown-item" routerLink="/admin/teachers">Teachers</a>
+			<a class="dropdown-item" routerLink="/admin/courses">Courses</a>
+		</div>
+		</li>
+	  </ul>
+	  <a class="nav-item nav-link">My profile</a>
+	  <a class="nav-item nav-link" (click)="logout()">Logout</a>
+	</div>
+</nav>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="role === 'STUDENT'">
+	<a class="navbar-brand" href="#">Home</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Exams
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="#">Register</a>
+			<a class="dropdown-item" href="#">Unregister</a>
+			<a class="dropdown-item" href="#">Active</a>
+			<a class="dropdown-item" href="#">Finished</a>
+		  </div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				View
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Courses</a>
+				<a class="dropdown-item" href="#">Transactions</a>
+				<a class="dropdown-item" href="#">Documents</a>
+			</div>
+		</li>
+	  </ul>
+	  <a class="nav-item nav-link">My profile</a>
+	  <a class="nav-item nav-link" (click)="logout()">Logout</a>
+	</div>
+</nav>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="role === 'TEACHER'">
+	<a class="navbar-brand" href="#">Home</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Enrollments
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="#">Users</a>
+			<a class="dropdown-item" href="#">Students</a>
+			<a class="dropdown-item" href="#">Teachers</a>
+			<a class="dropdown-item" href="#">Courses</a>
+		  </div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Transactions
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#">Users</a>
+				<a class="dropdown-item" href="#">Students</a>
+				<a class="dropdown-item" href="#">Teachers</a>
+				<a class="dropdown-item" href="#">Courses</a>
+			</div>
+		  </li>
+		  <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  Delete
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="#">Users</a>
+			  <a class="dropdown-item" href="#">Students</a>
+			  <a class="dropdown-item" href="#">Teachers</a>
+			  <a class="dropdown-item" href="#">Courses</a>
+			</div>
+		  </li>
+		  <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  View
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			  <a class="dropdown-item" href="#">Users</a>
+			  <a class="dropdown-item" href="#">Students</a>
+			  <a class="dropdown-item" href="#">Teachers</a>
+			  <a class="dropdown-item" href="#">Courses</a>
+			</div>
+		  </li>
+	  </ul>
+	  <a class="nav-item nav-link">My profile</a>
+	  <a class="nav-item nav-link" (click)="logout()">Logout</a>
+	</div>
+</nav>
+
+
+<router-outlet></router-outlet>

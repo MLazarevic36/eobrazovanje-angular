@@ -1,0 +1,62 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">Create teachers's user account</h4>
+        <div class="card-body">
+            <form [formGroup]="addTeacherForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                </div>
+            </form>
+        </div>
+	</div>
+	<div class="card">
+        <h4 class="card-header">Add teacher details</h4>
+        <div class="card-body">
+            <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="firstName">First name</label>
+                    <input type="text" formControlName="firstName" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last name</label>
+                    <input type="text" formControlName="lastName" class="form-control" />
+				</div>
+            </form>
+        </div>
+	</div>
+	<div class="card">
+        <h4 class="card-header">Select courses which teacher is going to teach</h4>
+        <div class="card-body">
+            <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit()">
+				<div class="form-group">
+                    <select class="custom-select" formControlName="courseId">
+						<option *ngFor="let course of courses; let i = index" [id]="courses[i].id" [value]="courses[i].id">
+							{{courses[i].name}}
+						</option>
+					</select>
+					<select class="custom-select" formControlName="teacherRole">
+						<option value="PROFESSOR">PROFESSOR</option>
+						<option value="ASSISTANT">ASSISTANT</option>
+						<option value="DEMONSTRATOR">DEMONSTRATOR</option>
+					</select>
+					<button type="button" (click)='handleClick()'>OK</button>
+					<ul>
+						<li *ngFor="let engagement of engagements">{{engagement.course}}, {{engagement.role}}
+							<button type="button" (click)='handleDelete()'>delete</button></li>
+					</ul>
+					<button [disabled]="loading" class="btn btn-primary" >
+						<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+						Add
+					</button>
+                </div>
+            </form>
+		</div>
+
+	</div>
+</div>
+<p *ngIf="submitted">Succesfully added</p>

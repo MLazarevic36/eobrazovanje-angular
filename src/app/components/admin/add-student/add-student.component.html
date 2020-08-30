@@ -1,0 +1,55 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">Create student's user account</h4>
+        <div class="card-body">
+            <form [formGroup]="addStudentForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                </div>
+            </form>
+        </div>
+	</div>
+	<div class="card">
+        <h4 class="card-header">Add student details</h4>
+        <div class="card-body">
+            <form [formGroup]="addStudentForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="firstName">First name</label>
+                    <input type="text" formControlName="firstName" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last name</label>
+                    <input type="text" formControlName="lastName" class="form-control" />
+				</div>
+				<div class="form-group">
+                    <label for="indexNumber">Index number</label>
+                    <input type="text" formControlName="indexNumber" class="form-control" />
+                </div>
+            </form>
+        </div>
+	</div>
+	<div class="card">
+        <h4 class="card-header">Select which courses is student going to take</h4>
+        <div class="card-body">
+            <form [formGroup]="addStudentForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <select multiple class="custom-select" formControlName="courseIds">
+						<option *ngFor="let course of courses; let i = index" [value]="courses[i].id">
+							{{courses[i].name}}
+						</option>
+					</select>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Add
+				</button>
+            </form>
+        </div>
+    </div>
+</div>
+<p *ngIf="submitted">Succesfully added</p>

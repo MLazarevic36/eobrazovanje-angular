@@ -1,0 +1,25 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Role</th>
+		<th>Delete</th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="users?.length != 0">
+		<tr *ngFor="let user of users">
+			<td>{{ user.id }}</td>
+			<td>{{ user.username }}</td>
+			<td>{{ user.role }}</td>
+			<td><button id={{user.id}} (click)='handleClick($event)' type=”button”>Button</button></td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="users?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>
+
+
