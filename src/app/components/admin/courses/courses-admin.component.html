@@ -8,7 +8,7 @@
 	</thead>
 	<tbody *ngIf="courses?.length != 0">
 		<tr *ngFor="let course of courses">
-			<td>{{ course.id }}</td>
+			<td>{{ course.course_id }}</td>
 			<td>{{ course.name }}</td>
 			<td><button id={{course.id}} (click)='handleClick($event)' type=”button”>Button</button></td>
 		</tr>

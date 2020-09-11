@@ -1,3 +1,5 @@
+import { Student } from './../model/student/student';
+import { Term } from './../model/exams/term';
 import { AddStudent } from './../model/student/add_student';
 import { DataTablesResponse } from './../model/data-tables-response';
 import { map, catchError } from 'rxjs/operators';
@@ -17,6 +19,10 @@ export class StudentsService {
 		return this.http.get<DataTablesResponse>(environment.apiUrl + 'students');
 	}
 
+	getStudentByUser(id): Observable<Student>{
+		return this.http.get<Student>(environment.apiUrl + 'students/user/' + id);
+	}
+
 	deleteStudent(id) {
 		return this.http.delete(environment.apiUrl + 'students/' + id).subscribe(data => {
 		});
@@ -24,6 +30,14 @@ export class StudentsService {
 
 	createStudent(student: AddStudent): Observable<AddStudent> {
 		return this.http.post<AddStudent>(environment.apiUrl + 'students', student);
+	}
+
+	getStudentCourses(id): Observable<DataTablesResponse>{
+		return this.http.get<DataTablesResponse>(environment.apiUrl + 'students/' + id + '/enrollments');
+	}
+
+	getStudentTransactions(id): Observable<DataTablesResponse>{
+		return this.http.get<DataTablesResponse>(environment.apiUrl + 'students/' + id + '/transactions');
 	}
 
 }

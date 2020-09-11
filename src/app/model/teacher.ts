@@ -1,5 +1,5 @@
 export class Teacher {
-	id: number;
+	teacher_id: number;
 	first_name: string;
 	last_name: string;
 	user: { id: number};

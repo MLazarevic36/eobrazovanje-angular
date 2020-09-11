@@ -60,18 +60,19 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 	handleClick(event: Event) {
 		let elementId = (event.target as Element).id;
 		this.studentsService.deleteStudent(elementId);
+		alert('Succesfully deleted student!');
 		this.rerender();
 	  }
 
 	rerender(): void {
-	this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-		dtInstance.destroy();
-		this.studentsService.getStudents().subscribe((studentsList: DataTablesResponse) => {
-			this.students = studentsList.content;
-			this.response = studentsList;
-			this.dtTrigger.next();
+		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+			dtInstance.destroy();
+			this.studentsService.getStudents().subscribe((studentsList: DataTablesResponse) => {
+				this.students = studentsList.content;
+				this.response = studentsList;
+				this.dtTrigger.next();
+			});
 		});
-	});
 	}
 
 }

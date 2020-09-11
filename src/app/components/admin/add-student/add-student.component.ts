@@ -68,11 +68,11 @@ export class AddStudentComponent implements OnInit {
 
 		this.usersService.createUser(user).subscribe(res => {
 			const student: AddStudent = {
-				id: null,
+				student_id: null,
 				first_name: this.f.firstName.value,
 				last_name: this.f.lastName.value,
 				index_number: this.f.indexNumber.value,
-				account_balance: 0.0,
+				account_balance: 1000.0,
 				user: {
 					id : Number(res.id)
 				},
@@ -81,9 +81,9 @@ export class AddStudentComponent implements OnInit {
 			this.studentsService.createStudent(student).subscribe(resStudent => {
 				for (var val of this.f.courseIds.value) {
 					const enrollment: CourseEnrollment = {
-						id: null,
-						student: { id: resStudent.id},
-						course: { id: val},
+						course_enrollment_id: null,
+						student: { student_id: resStudent.student_id},
+						course: { course_id: val},
 						deleted: false
 					};
 					this.coursesService.createCourseEnrollment(enrollment).subscribe(resEnrollment => {

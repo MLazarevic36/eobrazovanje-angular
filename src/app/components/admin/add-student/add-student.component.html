@@ -39,8 +39,8 @@
             <form [formGroup]="addStudentForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <select multiple class="custom-select" formControlName="courseIds">
-						<option *ngFor="let course of courses; let i = index" [value]="courses[i].id">
-							{{courses[i].name}}
+						<option *ngFor="let course of courses;" [value]="course.course_id">
+							{{course.name}}
 						</option>
 					</select>
                 </div>

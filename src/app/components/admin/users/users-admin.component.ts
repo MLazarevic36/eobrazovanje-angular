@@ -65,6 +65,7 @@ export class UsersAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 		// this.deleteUser();
 		let elementId = (event.target as Element).id;
 		this.usersService.deleteUser(elementId);
+		alert('Succesfully deleted user!');
 		this.rerender();
 	  }
 
@@ -76,6 +77,7 @@ export class UsersAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 			this.response = usersList;
 			this.dtTrigger.next();
 		});
+
 
 
 	});

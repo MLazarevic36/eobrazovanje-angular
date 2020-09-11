@@ -77,7 +77,7 @@ export class AddTeacherComponent implements OnInit {
 
 		this.usersService.createUser(user).subscribe(res => {
 			const teacher: Teacher = {
-				id: null,
+				teacher_id: null,
 				first_name: this.f.firstName.value,
 				last_name: this.f.lastName.value,
 				user: { id: Number(res.id)},
@@ -87,9 +87,9 @@ export class AddTeacherComponent implements OnInit {
 
 				for (var obj of this.engagements) {
 					const teacherEngagement: TeacherEngagement = {
-						id: null,
-						course: { id: obj.course},
-						teacher: { id: resTeacher.id},
+						teacher_engagement_id: null,
+						course: { course_id: obj.course},
+						teacher: { teacher_id: resTeacher.teacher_id},
 						teacher_role: obj.role,
 						deleted: false
 					};

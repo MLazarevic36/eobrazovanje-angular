@@ -1,5 +1,5 @@
-export class Student {
-	id: number;
+export class Course {
+	course_id: number;
 	name: string;
 	engagements?: [];
 	deleted: boolean;

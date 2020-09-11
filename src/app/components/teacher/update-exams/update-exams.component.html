@@ -1,0 +1,53 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>Index number</th>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Course</th>
+		<th>Colloquium points</th>
+		<th>Exam points</th>
+		<th>Grade</th>
+		<th>Update</th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="exams?.length != 0">
+		<tr *ngFor="let exam of exams">
+			<td>{{ exam.student.index_number }}</td>
+			<td>{{ exam.student.first_name }}</td>
+			<td>{{ exam.student.last_name }}</td>
+			<td>{{ exam.exam.course.name }}</td>
+			<td>{{ exam.colloquium_points }}</td>
+			<td>{{ exam.exam_points}}</td>
+			<td>{{ exam.grade }}</td>
+			<td><button id={{exam.exam_registration_id}} (click)="handleClick($event, exam.exam.exam_id, exam.student.student_id )">Update</button></td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="exams?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>
+<div *ngIf="show">
+	<div class="col-md-6 offset-md-3 mt-5">
+		<div class="card">
+			<h4 class="card-header">Update exam </h4>
+			<div class="card-body">
+				<form [formGroup]="updateExamForm">
+					<div class="form-group" style="width: 50%;">
+						<label for="colloquium_points">Colloquium points</label>
+						<input type="number" formControlName="colloquium_points" class="form-control" />
+					</div>
+					<div class="form-group" style="width: 50%;">
+						<label for="exam_points">Exam points</label>
+						<input type="number" formControlName="exam_points" class="form-control" />
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	<button (click)="handleSubmit()">Submit</button>
+	<button (click)="handleCancel()">Cancel</button>
+</div>
+

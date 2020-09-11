@@ -63,6 +63,7 @@ export class TeachersAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 	handleClick(event: Event) {
 		let elementId = (event.target as Element).id;
 		this.teachersService.deleteTeacher(elementId);
+		alert('Succesfully deleted teacher!');
 		this.rerender();
 	  }
 
