@@ -1,0 +1,29 @@
+<div class="card">
+	<h1>{{courseName}}</h1>
+</div>
+<br>
+<div>
+	<h3>Students enrolled to this course: </h3>
+</div>
+<br>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>Index number</th>
+		<th>First name</th>
+		<th>Last name</th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="enrollments?.length != 0">
+		<tr *ngFor="let enrollment of enrollments">
+			<td>{{ enrollment.student.index_number }}</td>
+			<td>{{ enrollment.student.first_name }}</td>
+			<td>{{ enrollment.student.last_name }}</td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="enrollments?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>

@@ -1,3 +1,6 @@
+import { User } from './../../../model/user/user';
+import { Student } from './../../../model/student/student';
+import { AddStudent } from './../../../model/student/add_student';
 import { StudentsService } from './../../../services/students.service';
 import { TeachersService } from './../../../services/teachers.service';
 import { environment } from './../../../../environments/environment';
@@ -23,6 +26,17 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 	dtTrigger: Subject<any> = new Subject<any>();
 
 	students;
+	studentId;
+	userId;
+	firstName;
+	lastName;
+	indexNumber;
+	accountBalance;
+	username;
+	password;
+	role;
+	show = false;
+
 	response: DataTablesResponse;
 
 
@@ -73,6 +87,57 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 				this.dtTrigger.next();
 			});
 		});
+	}
+
+	handleUpdate(currentStudentId, currentFirstName, currentLastName, currentIndexNumber, currentAccountBalance,
+		currentUserId, currentUsername, currentPassword, currentRole) {
+		this.studentId = currentStudentId;
+		this.firstName = currentFirstName;
+		this.lastName = currentLastName;
+		this.indexNumber = currentIndexNumber;
+		this.accountBalance = currentAccountBalance;
+		this.userId = currentUserId;
+		this.username = currentUsername;
+		this.password = currentPassword;
+		this.role = currentRole;
+		this.show = !this.show;
+	}
+
+	handleCancel() {
+		this.show = !this.show;
+	}
+
+	updateStudent() {
+		var newFirstName = ((document.getElementById('firstNameInput') as HTMLInputElement).value);
+		var newLastName = ((document.getElementById('lastNameInput') as HTMLInputElement).value);
+		var newIndexNumber = ((document.getElementById('indexNumberInput') as HTMLInputElement).value);
+		var newAccountBalance = ((document.getElementById('accountBalanceInput') as HTMLInputElement).value);
+
+		const updatedUser: User = {
+			id: this.userId,
+			username: this.username,
+			password: this.password,
+			role: this.role,
+			deleted: false,
+			accessToken: null
+		}
+
+		const updatedStudent: Student = {
+			student_id: this.studentId,
+			first_name: newFirstName,
+			last_name: newLastName,
+			index_number: newIndexNumber,
+			account_balance: Number(newAccountBalance),
+			user: updatedUser,
+			deleted: false
+		}
+
+		this.studentsService.updateStudent(updatedStudent).subscribe(res => {
+			alert('Succesfully updated students data!');
+			this.rerender();
+			this.show = !this.show;
+		});
+
 	}
 
 }

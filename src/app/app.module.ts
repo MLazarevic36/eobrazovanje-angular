@@ -31,6 +31,17 @@ import { ViewDetailedCourseComponent } from './components/teacher/view-detailed-
 import { ExamAdministrationComponent } from './components/teacher/exam-administration/exam-administration.component';
 import { UpdateExamsComponent } from './components/teacher/update-exams/update-exams.component';
 import { TeacherChooseCourseService } from './services/teacher-choose-service';
+import { UnregisterExamComponent } from './components/student/unregister-exam/unregister-exam.component';
+import { PassedExamsComponent } from './components/student/passed-exams/passed-exams.component';
+import { ActiveExamsComponent } from './components/student/active-exams/active-exams.component';
+import { EnrollmentsAdminComponent } from './components/admin/enrollments/enrollments-admin.component';
+import { EngagementsAdminComponent } from './components/admin/engagements/engagements-admin.component';
+import { TransactionsAdminComponent } from './components/admin/transactions/transactions-admin.component';
+import { MyprofileAdminComponent } from './components/admin/myprofile/myprofile-admin.component';
+import { MyprofileTeacherComponent } from './components/teacher/myprofile/myprofile-teacher.component';
+import { MyprofileStudentComponent } from './components/student/myprofile/myprofile-student.component';
+import { DetailedCourseStudentComponent } from './components/student/detailed-course/detailed-course-student.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -44,7 +55,8 @@ import { TeacherChooseCourseService } from './services/teacher-choose-service';
 		appRoutingModule,
 		DataTablesModule,
 		MaterialModule,
-		MatNativeDateModule
+		MatNativeDateModule,
+		MatIconModule
 	],
 	declarations: [
 		AppComponent,
@@ -67,6 +79,16 @@ import { TeacherChooseCourseService } from './services/teacher-choose-service';
 		ViewDetailedCourseComponent,
 		ExamAdministrationComponent,
 		UpdateExamsComponent,
+		UnregisterExamComponent,
+		PassedExamsComponent,
+		ActiveExamsComponent,
+		EnrollmentsAdminComponent,
+		EngagementsAdminComponent,
+		TransactionsAdminComponent,
+		MyprofileAdminComponent,
+		MyprofileTeacherComponent,
+		MyprofileStudentComponent,
+		DetailedCourseStudentComponent,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

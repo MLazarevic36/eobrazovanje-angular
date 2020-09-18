@@ -44,15 +44,17 @@
 						<option value="ASSISTANT">ASSISTANT</option>
 						<option value="DEMONSTRATOR">DEMONSTRATOR</option>
 					</select>
-					<button type="button" (click)='handleClick()'>OK</button>
+					<a><mat-icon (click)='handleClick()' style="color: black; float: right;">add_circle</mat-icon></a>
 					<ul>
 						<li *ngFor="let engagement of engagements">{{engagement.course}}, {{engagement.role}}
-							<button type="button" (click)='handleDelete()'>delete</button></li>
+						<a><mat-icon (click)='handleDelete()' style="color: black;">remove_circle</mat-icon></a></li>
 					</ul>
+					<div style="display: flex; justify-content: center;">
 					<button [disabled]="loading" class="btn btn-primary" >
 						<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
 						Add
 					</button>
+					</div>
                 </div>
             </form>
 		</div>

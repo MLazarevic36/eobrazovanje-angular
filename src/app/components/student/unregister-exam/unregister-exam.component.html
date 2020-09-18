@@ -1,0 +1,27 @@
+<div>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>Course</th>
+		<th>Date</th>
+		<th>Location</th>
+		<th>Unregister</th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="registrations?.length != 0">
+		<tr *ngFor="let registration of registrations">
+			<td>{{ registration.exam.course.name }}</td>
+			<td>{{ registration.exam.date}}</td>
+			<td>{{ registration.exam.location}}</td>
+			<td><mat-icon style="cursor: pointer;" (click)="unregister(registration.exam_registration_id)">cancel</mat-icon></td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="registrations?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>
+</div>
+
+

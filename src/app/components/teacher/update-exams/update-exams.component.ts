@@ -101,7 +101,7 @@ export class UpdateExamsComponent implements AfterViewInit, OnDestroy, OnInit {
 			colloquium_points: this.f.colloquium_points.value,
 			exam_points: this.f.exam_points.value,
 			grade: 0,
-			status: 'ACTIVE',
+			status: 'PASSED',
 			exam: { exam_id : Number(this.examId)},
 			student: { student_id : Number(this.studentId)},
 			registered: false,

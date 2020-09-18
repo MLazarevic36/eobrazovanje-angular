@@ -1,0 +1,21 @@
+#wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+#header {
+	width: 90%;
+    float:left; /* add this */
+}
+
+#nextButton {
+	width: 50%;
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+
+.mat-icon {
+	font-size: 50px;
+  }

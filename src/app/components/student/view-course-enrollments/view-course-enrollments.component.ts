@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { StudentsService } from './../../../services/students.service';
 import { DataTablesResponse } from './../../../model/data-tables-response';
@@ -23,7 +24,8 @@ export class ViewCourseEnrollmentsComponent implements AfterViewInit, OnDestroy,
 
 	constructor(
 		private studentsService: StudentsService,
-		private http: HttpClient
+		private route: ActivatedRoute,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
@@ -50,6 +52,10 @@ export class ViewCourseEnrollmentsComponent implements AfterViewInit, OnDestroy,
 
 	ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
+	}
+
+	redirect(id): void {
+		this.router.navigate(['student/course', id]);
 	}
 
 

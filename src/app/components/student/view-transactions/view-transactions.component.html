@@ -9,7 +9,8 @@
 	<tbody *ngIf="transactions?.length != 0">
 		<tr *ngFor="let transaction of transactions">
 			<td>{{ transaction.purpose }}</td>
-			<td>{{ transaction.amount }}</td>
+			<td *ngIf="transaction.purpose == 'Exam registration'"> -{{ transaction.amount }}</td>
+			<td *ngIf="transaction.purpose == 'Exam unregistration'"> +{{ transaction.amount }}</td>
 			<td>{{ transaction.date }}</td>
 		</tr>
 	</tbody>

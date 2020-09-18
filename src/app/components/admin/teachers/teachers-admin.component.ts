@@ -1,3 +1,5 @@
+import { Teacher } from './../../../model/teacher';
+import { User } from './../../../model/user/user';
 import { TeachersService } from './../../../services/teachers.service';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +25,14 @@ export class TeachersAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 	dtTrigger: Subject<any> = new Subject<any>();
 
 	teachers;
+	show = false;
+	teacherId;
+	userId;
+	firstName;
+	lastName;
+	username;
+	password;
+	role;
 	response: DataTablesResponse;
 
 
@@ -38,9 +48,6 @@ export class TeachersAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 			lengthChange: false,
 			pagingType: 'full_numbers',
 			pageLength: this.response.totalPages,
-
-			// columns: [{data: 'id'}, {data: 'username'}, {data: 'role'}]
-
 		};
 
 	}
@@ -68,17 +75,57 @@ export class TeachersAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 	  }
 
 	rerender(): void {
-	this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-		dtInstance.destroy();
-		this.teachersService.getTeachers().subscribe((teachersList: DataTablesResponse) => {
-			this.teachers = teachersList.content;
-			this.response = teachersList;
-			this.dtTrigger.next();
+		this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+			dtInstance.destroy();
+			this.teachersService.getTeachers().subscribe((teachersList: DataTablesResponse) => {
+				this.teachers = teachersList.content;
+				this.response = teachersList;
+				this.dtTrigger.next();
+			});
 		});
+	}
 
+	handleUpdate(currentTeacherId, currentFirstName, currentLastName, currentUserId, currentUsername, currentPassword, currentRole) {
+		this.teacherId = currentTeacherId;
+		this.firstName = currentFirstName;
+		this.lastName = currentLastName;
+		this.userId = currentUserId;
+		this.username = currentUsername;
+		this.password = currentPassword;
+		this.role = currentRole;
+		this.show = !this.show;
+	}
 
-	});
+	updateTeacher() {
+		var newFirstName = ((document.getElementById('firstNameInput') as HTMLInputElement).value);
+		var newLastName = ((document.getElementById('lastNameInput') as HTMLInputElement).value);
 
+		const updatedUser: User = {
+			id: this.userId,
+			username: this.username,
+			password: this.password,
+			role: this.role,
+			deleted: false,
+			accessToken: null
+		};
+
+		const updatedTeacher: Teacher = {
+			teacher_id: this.teacherId,
+			first_name: newFirstName,
+			last_name: newLastName,
+			user: updatedUser,
+			deleted: false
+		};
+
+		this.teachersService.updateTeacher(updatedTeacher).subscribe(res => {
+			alert('Succesfully updated teachers data!');
+			this.rerender();
+			this.show = !this.show;
+		});
+	}
+
+	handleCancel() {
+		this.show = !this.show;
 	}
 
 

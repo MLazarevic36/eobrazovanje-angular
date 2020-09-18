@@ -1,3 +1,27 @@
+<div *ngIf="show">
+	<div class="col-md-6 offset-md-3 mt-5">
+		<div class="card">
+			<h4 class="card-header">Update exam</h4>
+			<div class="card-body">
+				<form [formGroup]="updateExamForm">
+					<div class="form-group" style="width: 50%; margin: 0 auto;">
+						<label for="colloquium_points">Colloquium points:</label>
+						<input type="number" formControlName="colloquium_points" class="form-control" />
+					</div>
+					<div class="form-group" style="width: 50%; margin: 0 auto;">
+						<label for="exam_points">Exam points:</label>
+						<input type="number" formControlName="exam_points" class="form-control" />
+					</div>
+				</form>
+				</div>
+				<div style="display: inline-block;">
+					<a><mat-icon (click)="handleSubmit()" style="margin: auto; color: black;">check_circle</mat-icon></a>
+					<a><mat-icon (click)="handleCancel()" style="margin: auto; color: black;">cancel</mat-icon></a>
+				</div>
+			</div>
+		</div>
+</div>
+<br>
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
 	<thead>
 	  <tr>
@@ -20,7 +44,8 @@
 			<td>{{ exam.colloquium_points }}</td>
 			<td>{{ exam.exam_points}}</td>
 			<td>{{ exam.grade }}</td>
-			<td><button id={{exam.exam_registration_id}} (click)="handleClick($event, exam.exam.exam_id, exam.student.student_id )">Update</button></td>
+			<td><a><mat-icon (click)="handleClick($event, exam.exam.exam_id, exam.student.student_id )" style="color: black">edit</mat-icon></a></td>
+
 		</tr>
 	</tbody>
 	<tbody *ngIf="exams?.length == 0">
@@ -29,25 +54,5 @@
 	  </tr>
 	<tbody>
 </table>
-<div *ngIf="show">
-	<div class="col-md-6 offset-md-3 mt-5">
-		<div class="card">
-			<h4 class="card-header">Update exam </h4>
-			<div class="card-body">
-				<form [formGroup]="updateExamForm">
-					<div class="form-group" style="width: 50%;">
-						<label for="colloquium_points">Colloquium points</label>
-						<input type="number" formControlName="colloquium_points" class="form-control" />
-					</div>
-					<div class="form-group" style="width: 50%;">
-						<label for="exam_points">Exam points</label>
-						<input type="number" formControlName="exam_points" class="form-control" />
-					</div>
-				</form>
-				</div>
-			</div>
-		</div>
-	<button (click)="handleSubmit()">Submit</button>
-	<button (click)="handleCancel()">Cancel</button>
-</div>
+
 

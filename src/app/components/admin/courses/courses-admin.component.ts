@@ -58,11 +58,11 @@ export class CoursesAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 		});
 	}
 
-	handleClick(event: Event) {
-		let elementId = (event.target as Element).id;
-		this.coursesService.deleteCourse(elementId);
-		alert('Succesfully deleted course!');
-		this.rerender();
+	handleClick(id) {
+		this.coursesService.deleteCourse(id).subscribe(res => {
+			alert('Succesfully deleted course!');
+			this.rerender();
+		});
 	  }
 
 	rerender(): void {

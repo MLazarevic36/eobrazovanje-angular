@@ -1,10 +1,11 @@
+import { User } from './../../../model/user/user';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { UsersService } from './../../../services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild} from '@angular/core';
-import { User } from 'src/app/model/user/user';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
@@ -22,6 +23,11 @@ export class UsersAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 	dtTrigger: Subject<any> = new Subject<any>();
 
 	users;
+	userId;
+	username;
+	password;
+	role;
+	show = false;
 	response: DataTablesResponse;
 
 	constructor(
@@ -36,9 +42,6 @@ export class UsersAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 			lengthChange: false,
 			pagingType: 'full_numbers',
 			pageLength: this.response.totalPages,
-
-			// columns: [{data: 'id'}, {data: 'username'}, {data: 'role'}]
-
 		};
 	}
 
@@ -55,19 +58,47 @@ export class UsersAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 		this.usersService.getUsers().subscribe((usersList: DataTablesResponse) => {
 			this.users = usersList.content;
 			this.response = usersList;
-			console.log(usersList.content);
-
 		});
 	}
 
 	handleClick(event: Event) {
-		// console.log(event.srcElement.attributes.id);
-		// this.deleteUser();
 		let elementId = (event.target as Element).id;
 		this.usersService.deleteUser(elementId);
 		alert('Succesfully deleted user!');
 		this.rerender();
 	  }
+
+	handleUpdate(currentUserId, currentUsername, currentPassword, currentUserRole) {
+		this.userId = currentUserId;
+		this.username = currentUsername;
+		this.password = currentPassword;
+		this.role = currentUserRole;
+		this.show = !this.show;
+	}
+
+	updateUser() {
+		var newUsername = ((document.getElementById('usernameInput') as HTMLInputElement).value);
+		var newPassword = ((document.getElementById('passwordInput') as HTMLInputElement).value);
+
+		const updatedUser: User = {
+			id: this.userId,
+			username: newUsername,
+			password: newPassword,
+			role: this.role,
+			deleted: false,
+			accessToken: null
+		};
+
+		this.usersService.updateUser(updatedUser).subscribe(res => {
+			alert('Succesfully updated users data!');
+			this.rerender();
+			this.show = !this.show;
+		});
+	}
+
+	handleCancel() {
+		this.show = !this.show;
+	}
 
 	rerender(): void {
 	this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {

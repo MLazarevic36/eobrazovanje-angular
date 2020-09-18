@@ -5,7 +5,7 @@
 		<th>First name</th>
 		<th>Last name</th>
 		<th>User ID</th>
-		<th>Delete</th>
+		<th></th>
 	  </tr>
 	</thead>
 	<tbody *ngIf="teachers?.length != 0">
@@ -13,8 +13,12 @@
 			<td>{{ teacher.teacher_id }}</td>
 			<td>{{ teacher.first_name }}</td>
 			<td>{{ teacher.last_name }}</td>
-			<td>{{ teacher.user }}</td>
-			<td><button id={{teacher.teacher_id}} (click)='handleClick($event)' type=”button”>Button</button></td>
+			<td>{{ teacher.user.id }}</td>
+			<td>
+				<a><mat-icon id={{teacher.teacher_id}} (click)='handleClick($event)' style="color: black;">delete</mat-icon></a>
+				<a><mat-icon (click)='handleUpdate(teacher.teacher_id, teacher.first_name,
+					teacher.last_name, teacher.user.id, teacher.user.username, teacher.user.password, teacher.user.role)' style="color: black;">edit</mat-icon></a>
+			</td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="teachers?.length == 0">
@@ -23,3 +27,24 @@
 	  </tr>
 	<tbody>
 </table>
+<div *ngIf="show">
+	<div class="col-md-6 offset-md-3 mt-5">
+		<div class="card">
+			<h4 class="card-header">Update teacher details</h4>
+			<div class="card-body">
+					<div style="width: 50%; margin: 0 auto;">
+						<label>First name:</label>
+						<input id="firstNameInput" value="{{firstName}}"/>
+					</div>
+					<div style="width: 50%; margin: 0 auto;">
+						<label>Last name:</label>
+						<input id="lastNameInput" value="{{lastName}}"/>
+					</div>
+			</div>
+			<div style="display: inline-block;">
+				<a><mat-icon (click)="updateTeacher()" style="margin: auto; color: black;">check_circle</mat-icon></a>
+				<a><mat-icon (click)="handleCancel()" style="margin: auto; color: black;">cancel</mat-icon></a>
+			</div>
+			</div>
+		</div>
+</div>

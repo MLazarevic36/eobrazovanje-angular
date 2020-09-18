@@ -31,4 +31,16 @@ export class ExamsService {
 		return this.http.get<Exam>(environment.apiUrl + 'exams/' + id);
 	}
 
+	getStudentsExamRegistrations(id): Observable<DataTablesResponse> {
+		return this.http.get<DataTablesResponse>(environment.apiUrl + 'students/' + id + '/exam-registrations');
+	}
+
+	unregisterExam(id) {
+		return this.http.delete(environment.apiUrl + 'exam-registrations/' + id);
+	}
+
+	getStudentsPassedExams(id): Observable<DataTablesResponse>{
+		return this.http.get<DataTablesResponse>(environment.apiUrl + 'exam-registrations/student/passed/' + id);
+	}
+
 }

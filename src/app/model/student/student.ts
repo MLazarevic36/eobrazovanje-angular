@@ -1,13 +1,12 @@
+import { User } from './../user/user';
 export class Student {
 	student_id: number;
-	firstName: string;
-	lastName: string;
-	indexNumber: string;
-	accountBalance: number;
-	userId: number;
-	enrollments?: [];
+	first_name: string;
+	last_name: string;
+	index_number: string;
+	account_balance: number;
+	user: User;
 	documents?: [];
-	transactions?: [];
-	exams?: [];
+	examRegistrations?: [];
 	deleted: boolean;
 }

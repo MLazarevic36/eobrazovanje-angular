@@ -23,6 +23,10 @@ export class StudentsService {
 		return this.http.get<Student>(environment.apiUrl + 'students/user/' + id);
 	}
 
+	getStudent(id): Observable<Student>{
+		return this.http.get<Student>(environment.apiUrl + 'students/' + id);
+	}
+
 	deleteStudent(id) {
 		return this.http.delete(environment.apiUrl + 'students/' + id).subscribe(data => {
 		});
@@ -39,5 +43,10 @@ export class StudentsService {
 	getStudentTransactions(id): Observable<DataTablesResponse>{
 		return this.http.get<DataTablesResponse>(environment.apiUrl + 'students/' + id + '/transactions');
 	}
+
+	updateStudent(student: Student): Observable<Student> {
+		return this.http.put<Student>(environment.apiUrl + 'students', student);
+	}
+
 
 }

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { catchError } from 'rxjs/operators';
 import { ExamRegistration } from './../../../model/exams/exam-registration';
 import { Exam } from './../../../model/exams/exam';
@@ -8,7 +9,7 @@ import { ExamsService } from './../../../services/exams.service';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DataTablesResponse } from './../../../model/data-tables-response';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Event } from '@angular/router';
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
@@ -24,6 +25,8 @@ export class RegisterExamComponent implements AfterViewInit, OnDestroy, OnInit  
 	dtOptions: DataTables.Settings = {};
 	dtTrigger: Subject<any> = new Subject<any>();
 
+	icon = 'check_box_outline_blank';
+	disabled = false;
 	terms;
 	response: DataTablesResponse;
 
@@ -73,7 +76,8 @@ export class RegisterExamComponent implements AfterViewInit, OnDestroy, OnInit  
 		};
 		this.examsService.registerExam(examRegistration).subscribe(res => {
 			alert('Succesfully registered exam!');
-			event.target.disabled = true;
+			(event.target as HTMLElement).innerText = 'checkbox';
+			(event.target as HTMLElement).style.cursor = 'auto';
 		});
 	}
 

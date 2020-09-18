@@ -3,12 +3,11 @@
 	  <tr>
 		<th>Course</th>
 		<th>Role</th>
-
 	  </tr>
 	</thead>
 	<tbody *ngIf="engagements?.length != 0">
 		<tr *ngFor="let engagement of engagements">
-			<td>{{ engagement.course.name }}</td>
+			<td><a (click)="redirect(engagement.course.course_id)" style="color: blue;">{{ engagement.course.name }}</a></td>
 			<td>{{ engagement.teacher_role }}</td>
 		</tr>
 	</tbody>

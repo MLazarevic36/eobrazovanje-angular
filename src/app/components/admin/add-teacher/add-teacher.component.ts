@@ -76,11 +76,19 @@ export class AddTeacherComponent implements OnInit {
 		};
 
 		this.usersService.createUser(user).subscribe(res => {
+			const newUser: User = {
+				id: res.id,
+				username: res.username,
+				password: res.password,
+				role: res.role,
+				deleted: res.deleted,
+				accessToken: res.accessToken
+			};
 			const teacher: Teacher = {
 				teacher_id: null,
 				first_name: this.f.firstName.value,
 				last_name: this.f.lastName.value,
-				user: { id: Number(res.id)},
+				user: newUser,
 				deleted: false
 			};
 			this.teachersService.createTeacher(teacher).subscribe(resTeacher => {

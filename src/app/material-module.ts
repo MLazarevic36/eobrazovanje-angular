@@ -62,7 +62,6 @@ import {MatTreeModule} from '@angular/material/tree';
 	MatDividerModule,
 	MatExpansionModule,
 	MatGridListModule,
-	MatIconModule,
 	MatInputModule,
 	MatListModule,
 	MatMenuModule,

@@ -21,9 +21,17 @@ export class TeachersService {
 		return this.http.get<DataTablesResponse>(environment.apiUrl + 'teachers');
 	}
 
+	getEngagements(): Observable<DataTablesResponse>{
+		return this.http.get<DataTablesResponse>(environment.apiUrl + 'teacher-engagements');
+	}
+
 	deleteTeacher(id) {
 		return this.http.delete(environment.apiUrl + 'teachers/' + id).subscribe(data => {
 		});
+	}
+
+	deleteEngagement(id) {
+		return this.http.delete(environment.apiUrl + 'teacher-engagements/' + id);
 	}
 
 	createTeacher(teacher: Teacher): Observable<Teacher> {
@@ -36,6 +44,10 @@ export class TeachersService {
 
 	getTeacherByUser(id): Observable<Teacher>{
 		return this.http.get<Teacher>(environment.apiUrl + 'teachers/user/' + id);
+	}
+
+	getTeacher(id): Observable<Teacher>{
+		return this.http.get<Teacher>(environment.apiUrl + 'teachers/' + id);
 	}
 
 	getTeacherEngagements(id): Observable<DataTablesResponse>{
@@ -52,6 +64,10 @@ export class TeachersService {
 
 	updateExam(exam: ExamRegistration): Observable<ExamRegistration> {
 		return this.http.put<ExamRegistration>(environment.apiUrl + 'exam-registrations', exam);
+	}
+
+	updateTeacher(teacher: Teacher): Observable<Teacher> {
+		return this.http.put<Teacher>(environment.apiUrl + 'teachers', teacher);
 	}
 
 }

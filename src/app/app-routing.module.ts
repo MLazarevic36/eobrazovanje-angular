@@ -1,3 +1,13 @@
+import { DetailedCourseStudentComponent } from './components/student/detailed-course/detailed-course-student.component';
+import { MyprofileStudentComponent } from './components/student/myprofile/myprofile-student.component';
+import { MyprofileTeacherComponent } from './components/teacher/myprofile/myprofile-teacher.component';
+import { MyprofileAdminComponent } from './components/admin/myprofile/myprofile-admin.component';
+import { TransactionsAdminComponent } from './components/admin/transactions/transactions-admin.component';
+import { EngagementsAdminComponent } from './components/admin/engagements/engagements-admin.component';
+import { EnrollmentsAdminComponent } from './components/admin/enrollments/enrollments-admin.component';
+import { ActiveExamsComponent } from './components/student/active-exams/active-exams.component';
+import { PassedExamsComponent } from './components/student/passed-exams/passed-exams.component';
+import { UnregisterExamComponent } from './components/student/unregister-exam/unregister-exam.component';
 import { UpdateExamsComponent } from './components/teacher/update-exams/update-exams.component';
 import { ExamAdministrationComponent } from './components/teacher/exam-administration/exam-administration.component';
 import { ViewDetailedCourseComponent } from './components/teacher/view-detailed-course/view-detailed-course.component';
@@ -18,7 +28,6 @@ import { AuthGuard } from './helpers/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { TeachersAdminComponent } from './components/admin/teachers/teachers-admin.component';
-import { cssHooks } from 'jquery';
 
 const routes: Routes = [
 	{ path: '', component: LoginComponent},
@@ -27,13 +36,19 @@ const routes: Routes = [
 		{ path: 'register-exams', component: RegisterExamComponent, canActivate: [AuthGuard]},
 		{ path: 'enrollments', component: ViewCourseEnrollmentsComponent, canActivate: [AuthGuard]},
 		{ path: 'transactions', component: ViewTransactionsComponent, canActivate: [AuthGuard]},
+		{ path: 'unregister-exams', component: UnregisterExamComponent, canActivate: [AuthGuard]},
+		{ path: 'passed-exams', component: PassedExamsComponent, canActivate: [AuthGuard]},
+		{ path: 'active-exams', component: ActiveExamsComponent, canActivate: [AuthGuard]},
+		{ path: 'profile', component: MyprofileStudentComponent, canActivate: [AuthGuard]},
+		{ path: 'course/:id', component: DetailedCourseStudentComponent, canActivate: [AuthGuard]},
 	]},
 	{ path: 'teacher', component: TeacherComponent,
 		children: [
 		{ path: 'engagements', component: ViewEngagementsComponent, canActivate: [AuthGuard]},
-		{ path: 'course', component: ViewDetailedCourseComponent, canActivate: [AuthGuard]},
+		{ path: 'course/:id', component: ViewDetailedCourseComponent, canActivate: [AuthGuard]},
 		{ path: 'exams', component: ExamAdministrationComponent, canActivate: [AuthGuard]},
 		{ path: 'update', component: UpdateExamsComponent, canActivate: [AuthGuard]},
+		{ path: 'profile', component: MyprofileTeacherComponent, canActivate: [AuthGuard]},
 	]},
 	{ path: 'admin', component: AdminComponent,
 		children: [
@@ -44,6 +59,10 @@ const routes: Routes = [
 		{ path: 'add-student', component: AddStudentComponent, canActivate: [AuthGuard]},
 		{ path: 'add-teacher', component: AddTeacherComponent, canActivate: [AuthGuard]},
 		{ path: 'add-admin', component: AddAdminComponent, canActivate: [AuthGuard]},
+		{ path: 'enrollments', component: EnrollmentsAdminComponent, canActivate: [AuthGuard]},
+		{ path: 'engagements', component: EngagementsAdminComponent, canActivate: [AuthGuard]},
+		{ path: 'transactions', component: TransactionsAdminComponent, canActivate: [AuthGuard]},
+		{ path: 'profile', component: MyprofileAdminComponent, canActivate: [AuthGuard]},
 	]},
 	{ path: '**', redirectTo: '' }
 ];

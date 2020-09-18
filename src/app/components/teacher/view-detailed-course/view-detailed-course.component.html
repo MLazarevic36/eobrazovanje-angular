@@ -1,1 +1,53 @@
-<p>view-detailed-course works!</p>
+<div class="card">
+	<h1>{{courseName}}</h1>
+</div>
+<br>
+<div id="wrapper">
+	<div id="header">
+		<h3>Students enrolled to this course: </h3>
+	</div>
+	<div id="addButton">
+		<label>Add new student to this course</label>
+		<a><mat-icon (click)="showForm()" style="margin: auto; color: black;">add_circle</mat-icon></a>
+	</div>
+</div>
+<br>
+<div *ngIf="show">
+	<div class="card">
+        <h4 class="card-header">Add student to this course</h4>
+        <div class="card-body">
+            <form [formGroup]="addStudentForm">
+                <div class="form-group">
+                    <label for="studentIndexNumber">Student's index number:</label>
+                    <input type="text" formControlName="studentIndexNumber" class="form-control" />
+				</div>
+				<a><mat-icon (click)="submitStudent()" style="margin: auto; color: black;">check_circle</mat-icon></a>
+				<a><mat-icon (click)="cancelAdd()" style="margin: auto; color: black;">cancel</mat-icon></a>
+            </form>
+        </div>
+	</div>
+</div>
+<br>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>Index number</th>
+		<th>First name</th>
+		<th>Last name</th>
+		<th></th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="enrollments?.length != 0">
+		<tr *ngFor="let enrollment of enrollments">
+			<td>{{ enrollment.student.index_number }}</td>
+			<td>{{ enrollment.student.first_name }}</td>
+			<td>{{ enrollment.student.last_name }}</td>
+			<td><a><mat-icon (click)="removeEnrollment(enrollment.course_enrollment_id)" style="color: black;">delete</mat-icon></a></td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="enrollments?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>
