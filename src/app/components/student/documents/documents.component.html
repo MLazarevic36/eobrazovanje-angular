@@ -1,0 +1,41 @@
+<br>
+<div style="float: right;">
+	<a (click)="showUploadFileForm()"><h3>Upload new file <mat-icon style="color: black;">cloud_upload</mat-icon></h3></a>
+</div>
+<div *ngIf="show">
+		<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+			<div>
+				<input type="file" formControlName="document" ng2FileSelect accept=".pdf" [uploader]="uploader"/>
+			</div>
+			<div>
+				<button type="submit">Upload</button>
+			</div>
+		</form>
+</div>
+<br>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+	<thead>
+	  <tr>
+		<th>Name</th>
+		<th>Download</th>
+		<th>Delete</th>
+	  </tr>
+	</thead>
+	<tbody *ngIf="documents?.length != 0">
+		<tr *ngFor="let document of documents">
+			<td>{{ document.name }}</td>
+			<td>
+				<a (click)='download(document.document_id, document.name)'><mat-icon style="color: black;">cloud_download</mat-icon></a>
+			</td>
+			<td>
+				<a><mat-icon (click)='delete(document.document_id)' style="color: black;">delete</mat-icon></a>
+			</td>
+		</tr>
+	</tbody>
+	<tbody *ngIf="documents?.length == 0">
+	  <tr>
+		<td colspan="3" class="no-data-available">No data!</td>
+	  </tr>
+	<tbody>
+</table>
+

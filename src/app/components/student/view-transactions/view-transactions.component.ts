@@ -22,8 +22,7 @@ export class ViewTransactionsComponent implements AfterViewInit, OnDestroy, OnIn
 	response: DataTablesResponse;
 
 	constructor(
-		private studentsService: StudentsService,
-		private http: HttpClient
+		private studentsService: StudentsService
 	) { }
 
 	ngOnInit(): void {
@@ -33,7 +32,6 @@ export class ViewTransactionsComponent implements AfterViewInit, OnDestroy, OnIn
 			lengthChange: false,
 			pagingType: 'full_numbers',
 			pageLength: this.response.totalPages,
-
 		};
 	}
 

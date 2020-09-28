@@ -14,7 +14,7 @@
 			<td>{{ user.role }}</td>
 			<td>
 				<a><mat-icon id={{user.id}} (click)='handleClick($event)' style="color: black;" >delete</mat-icon></a>
-				<a><mat-icon id={{user.id}} (click)='handleUpdate(user.id, user.username, user.password, user.role)' style="color: black;" >edit</mat-icon></a>
+				<a><mat-icon (click)='handleUpdate(user.id, user.username, user.password, user.role)' style="color: black;">edit</mat-icon></a>
 			</td>
 		</tr>
 	</tbody>

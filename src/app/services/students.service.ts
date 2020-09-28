@@ -1,3 +1,4 @@
+import { Document } from './../model/document';
 import { Student } from './../model/student/student';
 import { Term } from './../model/exams/term';
 import { AddStudent } from './../model/student/add_student';
@@ -28,8 +29,7 @@ export class StudentsService {
 	}
 
 	deleteStudent(id) {
-		return this.http.delete(environment.apiUrl + 'students/' + id).subscribe(data => {
-		});
+		return this.http.delete(environment.apiUrl + 'students/' + id);
 	}
 
 	createStudent(student: AddStudent): Observable<AddStudent> {
@@ -46,6 +46,24 @@ export class StudentsService {
 
 	updateStudent(student: Student): Observable<Student> {
 		return this.http.put<Student>(environment.apiUrl + 'students', student);
+	}
+
+	getDocuments(id): Observable<DataTablesResponse>{
+		return this.http.get<DataTablesResponse>(environment.apiUrl + 'documents/student/' + id);
+	}
+
+	deleteDocument(id) {
+		return this.http.delete(environment.apiUrl + 'documents/' + id);
+	}
+
+	downloadDocument(id): Observable<any> {
+		return this.http.get<any>(environment.apiUrl + 'documents/download/' + id,
+		{ responseType: 'blob' as 'json'}
+		);
+	}
+
+	uploadDocument(formData): Observable<any> {
+		return this.http.post<any>(environment.apiUrl + 'documents/upload', formData);
 	}
 
 

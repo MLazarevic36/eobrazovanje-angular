@@ -42,6 +42,8 @@ import { MyprofileTeacherComponent } from './components/teacher/myprofile/myprof
 import { MyprofileStudentComponent } from './components/student/myprofile/myprofile-student.component';
 import { DetailedCourseStudentComponent } from './components/student/detailed-course/detailed-course-student.component';
 import { MatIconModule } from '@angular/material/icon';
+import { DocumentsComponent } from './components/student/documents/documents.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -56,7 +58,8 @@ import { MatIconModule } from '@angular/material/icon';
 		DataTablesModule,
 		MaterialModule,
 		MatNativeDateModule,
-		MatIconModule
+		MatIconModule,
+		FileUploadModule
 	],
 	declarations: [
 		AppComponent,
@@ -89,6 +92,7 @@ import { MatIconModule } from '@angular/material/icon';
 		MyprofileTeacherComponent,
 		MyprofileStudentComponent,
 		DetailedCourseStudentComponent,
+		DocumentsComponent,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

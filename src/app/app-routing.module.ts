@@ -1,3 +1,4 @@
+import { DocumentsComponent } from './components/student/documents/documents.component';
 import { DetailedCourseStudentComponent } from './components/student/detailed-course/detailed-course-student.component';
 import { MyprofileStudentComponent } from './components/student/myprofile/myprofile-student.component';
 import { MyprofileTeacherComponent } from './components/teacher/myprofile/myprofile-teacher.component';
@@ -41,6 +42,7 @@ const routes: Routes = [
 		{ path: 'active-exams', component: ActiveExamsComponent, canActivate: [AuthGuard]},
 		{ path: 'profile', component: MyprofileStudentComponent, canActivate: [AuthGuard]},
 		{ path: 'course/:id', component: DetailedCourseStudentComponent, canActivate: [AuthGuard]},
+		{ path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard]},
 	]},
 	{ path: 'teacher', component: TeacherComponent,
 		children: [
