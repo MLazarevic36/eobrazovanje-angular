@@ -1,4 +1,4 @@
-import { Student } from './../../model/student/student';
+import { Student } from '../../model/student';
 import { HttpClient } from '@angular/common/http';
 import { StudentsService } from './../../services/students.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +23,7 @@ export class StudentComponent implements OnInit {
 	let currentUserObject = JSON.parse(localStorage.getItem('currentUser'));
 
 	this.studentsService.getStudentByUser(currentUserObject.id).subscribe((student: Student) => {
-		localStorage.setItem('student_id', student.student_id.toString());
+		localStorage.setItem('student_id', student.id.toString());
 	});
 	}
 

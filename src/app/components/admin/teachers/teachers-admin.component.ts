@@ -1,5 +1,5 @@
 import { Teacher } from './../../../model/teacher';
-import { User } from './../../../model/user/user';
+import { User } from '../../../model/user';
 import { TeachersService } from './../../../services/teachers.service';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -110,7 +110,7 @@ export class TeachersAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 		};
 
 		const updatedTeacher: Teacher = {
-			teacher_id: this.teacherId,
+			id: this.teacherId,
 			first_name: newFirstName,
 			last_name: newLastName,
 			user: updatedUser,

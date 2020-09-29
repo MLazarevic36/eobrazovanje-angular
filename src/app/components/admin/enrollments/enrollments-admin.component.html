@@ -11,12 +11,12 @@
 	</thead>
 	<tbody *ngIf="enrollments?.length != 0">
 		<tr *ngFor="let enrollment of enrollments">
-			<td>{{ enrollment.course_enrollment_id }}</td>
-			<td>{{ enrollment.course.name }}</td>
+			<td>{{ enrollment.id }}</td>
+			<td><a (click)="redirect(enrollment.course.id)" style="color: blue;">{{ enrollment.course.name }}</a></td>
 			<td>{{ enrollment.student.index_number}}</td>
 			<td>{{ enrollment.student.first_name }}</td>
 			<td>{{ enrollment.student.last_name }}</td>
-			<td><a><mat-icon (click)='remove(enrollment.course_enrollment_id)' style="color: black;">delete</mat-icon></a></td>
+			<td><a><mat-icon (click)='remove(enrollment.id)' style="color: black;">delete</mat-icon></a></td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="enrollments?.length == 0">

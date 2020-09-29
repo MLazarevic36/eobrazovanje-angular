@@ -4,7 +4,7 @@
 	<div id="header">
 		<select class="custom-select" name="course" (change)="courseChange($event)" id="course" ng-init="selection = 'Choose course'">
 			<option [ngValue]="null">Choose course</option>
-			<option *ngFor="let course of courses; let i = index" [id]="courses[i].teacher_engagement_id" [value]="courses[i].teacher_engagement_id">
+			<option *ngFor="let course of courses; let i = index" [id]="courses[i].id" [value]="courses[i].id">
 				{{courses[i].course.name}}
 			</option>
 		</select>

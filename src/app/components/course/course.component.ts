@@ -1,18 +1,18 @@
-import { CourseEnrollmentIndex } from './../../../model/course-enrollment-index';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-import { DataTablesResponse } from './../../../model/data-tables-response';
-import { CoursesService } from './../../../services/courses.service';
+import { Subject } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { CoursesService } from './../../services/courses.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, AfterViewInit, OnDestroy, ViewChild } from '@angular/core';
+import { DataTablesResponse } from './../../model/data-tables-response';
+import { CourseEnrollmentIndex } from './../../model/course-enrollment-index';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-view-detailed-course',
-  templateUrl: './view-detailed-course.component.html',
-  styleUrls: ['./view-detailed-course.component.css']
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.css']
 })
-export class ViewDetailedCourseComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CourseComponent implements OnInit {
 	@ViewChild(DataTableDirective, {static: false})
 	dtElement: DataTableDirective;
 
@@ -25,6 +25,7 @@ export class ViewDetailedCourseComponent implements OnInit, AfterViewInit, OnDes
 	courseName;
 	courseId;
 	enrollments;
+	role;
 	response: DataTablesResponse;
 
 	constructor(
@@ -35,6 +36,8 @@ export class ViewDetailedCourseComponent implements OnInit, AfterViewInit, OnDes
 
 	ngOnInit(): void {
 		this.courseId = this.route.snapshot.paramMap.get('id');
+		const user = JSON.parse(localStorage.getItem('currentUser'));
+		this.role = user.role;
 		this.getCourse(this.courseId);
 		this.getCourseEnrollments(this.courseId);
 		this.addStudentForm = this.formBuilder.group({
@@ -78,8 +81,8 @@ export class ViewDetailedCourseComponent implements OnInit, AfterViewInit, OnDes
 	submitStudent() {
 
 		const enrollment: CourseEnrollmentIndex = {
-			course_enrollment_id: null,
-			course: { course_id: this.courseId},
+			id: null,
+			course: { id: this.courseId},
 			index_number: this.f.studentIndexNumber.value,
 			deleted: false
 		};
@@ -113,5 +116,4 @@ export class ViewDetailedCourseComponent implements OnInit, AfterViewInit, OnDes
 			});
 		});
 	}
-
 }

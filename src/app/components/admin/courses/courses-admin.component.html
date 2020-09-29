@@ -8,9 +8,9 @@
 	</thead>
 	<tbody *ngIf="courses?.length != 0">
 		<tr *ngFor="let course of courses">
-			<td>{{ course.course_id }}</td>
-			<td>{{ course.name }}</td>
-			<td><a><mat-icon (click)='handleClick(course.course_id)' style="color: black;">delete</mat-icon></a></td>
+			<td>{{ course.id }}</td>
+			<td><a (click)="redirect(course.id)" style="color: blue;">{{ course.name }}</a></td>
+			<td><a><mat-icon (click)='handleDelete(course.id)' style="color: black;">delete</mat-icon></a></td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="courses?.length == 0">

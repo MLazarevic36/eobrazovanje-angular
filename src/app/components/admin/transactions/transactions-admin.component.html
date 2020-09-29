@@ -12,7 +12,7 @@
 	</thead>
 	<tbody *ngIf="transactions?.length != 0">
 		<tr *ngFor="let transaction of transactions">
-			<td>{{ transaction.transaction_id }}</td>
+			<td>{{ transaction.id }}</td>
 			<td>{{ transaction.student.index_number }}</td>
 			<td>{{ transaction.student.first_name }}</td>
 			<td>{{ transaction.student.last_name }}</td>

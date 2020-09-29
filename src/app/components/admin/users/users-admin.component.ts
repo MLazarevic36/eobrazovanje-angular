@@ -1,4 +1,4 @@
-import { User } from './../../../model/user/user';
+import { User } from '../../../model/user';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';

@@ -23,7 +23,7 @@ export class TeacherComponent implements OnInit {
 	let currentUserObject = JSON.parse(localStorage.getItem('currentUser'));
 
 	this.teachersService.getTeacherByUser(currentUserObject.id).subscribe((teacher: Teacher) => {
-		localStorage.setItem('teacher_id', teacher.teacher_id.toString());
+		localStorage.setItem('teacher_id', teacher.id.toString());
 	});
 	}
 

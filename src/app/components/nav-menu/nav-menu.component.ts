@@ -1,7 +1,7 @@
 import { AuthService } from './../../services/AuthService/authentication.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user/user';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-nav-menu',

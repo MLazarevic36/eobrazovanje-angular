@@ -1,6 +1,5 @@
-import { User } from 'src/app/model/user/user';
+import { User } from 'src/app/model/user';
 import { DataTablesResponse } from './../model/data-tables-response';
-import { map, catchError } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';

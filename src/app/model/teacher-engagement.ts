@@ -1,7 +1,7 @@
 export class TeacherEngagement {
-	teacher_engagement_id: number;
-	course: { course_id: number};
-	teacher: { teacher_id: number};
+	id: number;
+	course: { id: number};
+	teacher: { id: number};
 	teacher_role: string;
 	deleted: boolean;
 }

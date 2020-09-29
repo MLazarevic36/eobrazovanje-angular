@@ -12,15 +12,15 @@
 	</thead>
 	<tbody *ngIf="students?.length != 0">
 		<tr *ngFor="let student of students">
-			<td>{{ student.student_id }}</td>
+			<td>{{ student.id }}</td>
 			<td>{{ student.first_name }}</td>
 			<td>{{ student.last_name }}</td>
 			<td>{{ student.index_number }}</td>
 			<td>{{ student.account_balance }}</td>
 			<td>{{ student.user.id }}</td>
 			<td>
-				<a><mat-icon id={{student.student_id}} (click)='handleClick($event)' style="color: black;">delete</mat-icon></a>
-				<a><mat-icon (click)='handleUpdate(student.student_id, student.first_name, student.last_name,
+				<a><mat-icon (click)='handleDelete(student.id)' style="color: black;">delete</mat-icon></a>
+				<a><mat-icon (click)='handleUpdate(student.id, student.first_name, student.last_name,
 					student.index_number, student.account_balance, student.user.id, student.user.username,
 					student.user.password, student.user.role)' style="color: black;">edit</mat-icon></a>
 			</td>

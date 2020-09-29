@@ -30,7 +30,7 @@
 		</div>
 		</li>
 	  </ul>
-	  <a class="nav-item nav-link" routerLink="/admin/profile"><mat-icon [ngStyle]="{'color':'black'}">account_box</mat-icon></a>
+	  <a class="nav-item nav-link" routerLink="/profile"><mat-icon [ngStyle]="{'color':'black'}">account_box</mat-icon></a>
 	  <a class="nav-item nav-link" (click)="logout()"><mat-icon [ngStyle]="{'color':'black'}">exit_to_app</mat-icon></a>
 	</div>
 </nav>
@@ -50,7 +50,6 @@
 		  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			<a class="dropdown-item" routerLink="/student/register-exams">Register</a>
 			<a class="dropdown-item" routerLink="/student/unregister-exams">Unregister</a>
-			<a class="dropdown-item" routerLink="/student/active-exams">Active</a>
 			<a class="dropdown-item" routerLink="/student/passed-exams">Passed</a>
 		  </div>
 		</li>
@@ -65,7 +64,7 @@
 			</div>
 		</li>
 	  </ul>
-	  <a class="nav-item nav-link" routerLink="/student/profile"><mat-icon style="color: black;">account_box</mat-icon></a>
+	  <a class="nav-item nav-link" routerLink="/profile"><mat-icon style="color: black;">account_box</mat-icon></a>
 	  <a class="nav-item nav-link" (click)="logout()"><mat-icon style="color: black;">exit_to_app</mat-icon></a>
 	</div>
 </nav>
@@ -89,7 +88,7 @@
 			</a>
 		  </li>
 	  </ul>
-	  <a class="nav-item nav-link" routerLink="/teacher/profile"><mat-icon style="color: black;">account_box</mat-icon></a>
+	  <a class="nav-item nav-link" routerLink="/profile"><mat-icon style="color: black;">account_box</mat-icon></a>
 	  <a class="nav-item nav-link" (click)="logout()"><mat-icon style="color: black;">exit_to_app</mat-icon></a>
 	</div>
 </nav>

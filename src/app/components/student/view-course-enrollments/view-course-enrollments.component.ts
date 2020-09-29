@@ -55,9 +55,7 @@ export class ViewCourseEnrollmentsComponent implements AfterViewInit, OnDestroy,
 	}
 
 	redirect(id): void {
-		this.router.navigate(['student/course', id]);
+		this.router.navigate(['course', id]);
 	}
-
-
 
 }

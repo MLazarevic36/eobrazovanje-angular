@@ -1,14 +1,14 @@
-import { Student } from './../../../model/student/student';
+import { Student } from '../../../model/student';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ExamsService } from './../../../services/exams.service';
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-import { ExamRegistration } from './../../../model/exams/exam-registration';
+import { ExamRegistration } from '../../../model/exam-registration';
 import { TeachersService } from './../../../services/teachers.service';
 import { TeacherChooseCourseService } from './../../../services/teacher-choose-service';
 import { Component, OnInit, Input, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { Exam } from 'src/app/model/exams/exam';
+import { Exam } from 'src/app/model/exam';
 
 @Component({
   selector: 'app-update-exams',
@@ -37,7 +37,12 @@ export class UpdateExamsComponent implements AfterViewInit, OnDestroy, OnInit {
 		private teachersService: TeachersService,
 		private examsService: ExamsService,
 		private formBuilder: FormBuilder
-	) { }
+	) {
+		this.updateExamForm = this.formBuilder.group({
+			colloquium_points: [''],
+			exam_points: ['']
+		});
+	}
 
 	ngOnInit(): void {
 		this.data = this.teacherChooseService.getData();
@@ -48,6 +53,7 @@ export class UpdateExamsComponent implements AfterViewInit, OnDestroy, OnInit {
 			pagingType: 'full_numbers',
 			pageLength: this.response.totalPages,
 		};
+
 	}
 
 	ngAfterViewInit(): void {
@@ -68,15 +74,12 @@ export class UpdateExamsComponent implements AfterViewInit, OnDestroy, OnInit {
 
 	get f() { return this.updateExamForm.controls; }
 
-	handleClick(event: Event, examId, studentId) {
-		this.updateExamForm = this.formBuilder.group({
-			colloquium_points: [''],
-			exam_points: ['']
-		});
+	handleClick(examRegistrationId, examId, studentId) {
+
 		this.show = true;
 		this.studentId = studentId;
 		this.examId = examId;
-		this.registrationId = (event.target as Element).id;
+		this.registrationId = examRegistrationId;
 
 
 
@@ -97,16 +100,17 @@ export class UpdateExamsComponent implements AfterViewInit, OnDestroy, OnInit {
 	handleSubmit() {
 
 		const updatedExam: ExamRegistration = {
-			exam_registration_id: Number(this.registrationId),
+			id: Number(this.registrationId),
 			colloquium_points: this.f.colloquium_points.value,
 			exam_points: this.f.exam_points.value,
 			grade: 0,
 			status: 'PASSED',
-			exam: { exam_id : Number(this.examId)},
-			student: { student_id : Number(this.studentId)},
+			exam: { id : Number(this.examId)},
+			student: { id : Number(this.studentId)},
 			registered: false,
 			deleted: false
 		};
+
 
 		this.teachersService.updateExam(updatedExam).subscribe(res => {
 			alert('Succesfully updated exam');

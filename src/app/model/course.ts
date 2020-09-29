@@ -1,6 +1,5 @@
 export class Course {
-	course_id: number;
+	id: number;
 	name: string;
-	engagements?: [];
 	deleted: boolean;
 }

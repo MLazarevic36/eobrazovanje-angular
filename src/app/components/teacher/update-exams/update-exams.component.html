@@ -44,7 +44,7 @@
 			<td>{{ exam.colloquium_points }}</td>
 			<td>{{ exam.exam_points}}</td>
 			<td>{{ exam.grade }}</td>
-			<td><a><mat-icon (click)="handleClick($event, exam.exam.exam_id, exam.student.student_id )" style="color: black">edit</mat-icon></a></td>
+			<td><a><mat-icon (click)="handleClick(exam.id, exam.exam.id, exam.student.id )" style="color: black">edit</mat-icon></a></td>
 
 		</tr>
 	</tbody>

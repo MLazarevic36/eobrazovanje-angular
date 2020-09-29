@@ -3,7 +3,7 @@ import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { UsersService } from './../../../services/users.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild} from '@angular/core';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
@@ -26,7 +26,8 @@ export class CoursesAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 
 	constructor(
 		private coursesService: CoursesService,
-		private http: HttpClient
+		private route: ActivatedRoute,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
@@ -36,9 +37,6 @@ export class CoursesAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 			lengthChange: false,
 			pagingType: 'full_numbers',
 			pageLength: this.response.totalPages,
-
-			// columns: [{data: 'id'}, {data: 'username'}, {data: 'role'}]
-
 		};
 
 	}
@@ -58,7 +56,7 @@ export class CoursesAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 		});
 	}
 
-	handleClick(id) {
+	handleDelete(id) {
 		this.coursesService.deleteCourse(id).subscribe(res => {
 			alert('Succesfully deleted course!');
 			this.rerender();
@@ -73,10 +71,12 @@ export class CoursesAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 			this.response = coursesList;
 			this.dtTrigger.next();
 		});
-
-
 	});
-
 	}
+
+	redirect(id): void {
+		this.router.navigate(['course', id]);
+	}
+
 
 }

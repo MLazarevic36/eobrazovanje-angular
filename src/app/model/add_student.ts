@@ -1,5 +1,5 @@
 export class AddStudent {
-	student_id: number;
+	id: number;
 	first_name: string;
 	last_name: string;
 	index_number: string;

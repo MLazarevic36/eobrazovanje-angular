@@ -34,20 +34,20 @@
         <div class="card-body">
             <form [formGroup]="addTeacherForm" (ngSubmit)="onSubmit()">
 				<div class="form-group">
-                    <select class="custom-select" formControlName="courseId">
-						<option *ngFor="let course of courses;" [id]="course.course_id" [value]="course.course_id">
+                    <select class="custom-select" formControlName="course" (change)="courseChange($event)">
+						<option *ngFor="let course of courses;" [id]="course.id" [value]="course.name">
 							{{course.name}}
 						</option>
 					</select>
-					<select class="custom-select" formControlName="teacherRole">
+					<select class="custom-select" formControlName="teacherRole" (change)="roleChange($event)">
 						<option value="PROFESSOR">PROFESSOR</option>
 						<option value="ASSISTANT">ASSISTANT</option>
 						<option value="DEMONSTRATOR">DEMONSTRATOR</option>
 					</select>
 					<a><mat-icon (click)='handleClick()' style="color: black; float: right;">add_circle</mat-icon></a>
 					<ul>
-						<li *ngFor="let engagement of engagements">{{engagement.course}}, {{engagement.role}}
-						<a><mat-icon (click)='handleDelete()' style="color: black;">remove_circle</mat-icon></a></li>
+						<li *ngFor="let engagement of engagements, let i = index">{{engagement.courseName}}, {{engagement.role}}
+						<a><mat-icon (click)='handleDelete(i)' style="color: black;">remove_circle</mat-icon></a></li>
 					</ul>
 					<div style="display: flex; justify-content: center;">
 					<button [disabled]="loading" class="btn btn-primary" >

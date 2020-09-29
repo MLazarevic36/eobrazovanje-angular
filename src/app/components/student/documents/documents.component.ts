@@ -122,9 +122,7 @@ export class DocumentsComponent implements  AfterViewInit, OnDestroy, OnInit {
 
 	onFileSelect(event) {
 		if (event.target.files.length > 0) {
-			// const file = event.target.files[0];
 			this.selectedFile = event.target.files[0];
-			// this.uploadForm.get('document').setValue(file);
 		}
 	}
 
@@ -134,8 +132,8 @@ export class DocumentsComponent implements  AfterViewInit, OnDestroy, OnInit {
 			console.log(this.selectedFile);
 			this.studentsService.uploadDocument(data).subscribe(res => {
 				alert('Succesfully uploaded document!');
-				this.rerender();
 				this.show = !this.show;
+				location.reload();
 			});
 			this.uploader.clearQueue();
 	}

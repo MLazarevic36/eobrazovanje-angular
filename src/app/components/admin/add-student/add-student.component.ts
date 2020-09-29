@@ -1,8 +1,8 @@
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { CoursesService } from './../../../services/courses.service';
-import { User } from 'src/app/model/user/user';
+import { User } from 'src/app/model/user';
 import { map } from 'rxjs/operators';
-import { AddStudent } from './../../../model/student/add_student';
+import { AddStudent } from '../../../model/add_student';
 import { StudentsService } from './../../../services/students.service';
 import { UsersService } from './../../../services/users.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -68,7 +68,7 @@ export class AddStudentComponent implements OnInit {
 
 		this.usersService.createUser(user).subscribe(res => {
 			const student: AddStudent = {
-				student_id: null,
+				id: null,
 				first_name: this.f.firstName.value,
 				last_name: this.f.lastName.value,
 				index_number: this.f.indexNumber.value,
@@ -81,9 +81,9 @@ export class AddStudentComponent implements OnInit {
 			this.studentsService.createStudent(student).subscribe(resStudent => {
 				for (var val of this.f.courseIds.value) {
 					const enrollment: CourseEnrollment = {
-						course_enrollment_id: null,
-						student: { student_id: resStudent.student_id},
-						course: { course_id: val},
+						id: null,
+						student: { id: resStudent.id},
+						course: { id: val},
 						deleted: false
 					};
 					this.coursesService.createCourseEnrollment(enrollment).subscribe(resEnrollment => {

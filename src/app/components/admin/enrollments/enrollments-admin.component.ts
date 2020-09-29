@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from './../../../services/courses.service';
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { Subject } from 'rxjs';
@@ -21,7 +22,9 @@ export class EnrollmentsAdminComponent implements AfterViewInit, OnDestroy, OnIn
 	response: DataTablesResponse;
 
 	constructor(
-		private courseService: CoursesService
+		private courseService: CoursesService,
+		private route: ActivatedRoute,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
@@ -65,6 +68,10 @@ export class EnrollmentsAdminComponent implements AfterViewInit, OnDestroy, OnIn
 			alert('Succesfully deleted enrollment!');
 			this.rerender();
 		});
+	}
+
+	redirect(id): void {
+		this.router.navigate(['course', id]);
 	}
 
 

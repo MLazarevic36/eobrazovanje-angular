@@ -1,13 +1,13 @@
-import { User } from './../../../model/user/user';
-import { Student } from './../../../model/student/student';
-import { AddStudent } from './../../../model/student/add_student';
+import { User } from '../../../model/user';
+import { Student } from '../../../model/student';
+import { AddStudent } from '../../../model/add_student';
 import { StudentsService } from './../../../services/students.service';
 import { TeachersService } from './../../../services/teachers.service';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild} from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
@@ -38,11 +38,11 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 	show = false;
 
 	response: DataTablesResponse;
+	totalPages;
 
 
 	constructor(
 		private studentsService: StudentsService,
-		private http: HttpClient
 	) { }
 
 	ngOnInit(): void {
@@ -52,8 +52,8 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 			lengthChange: false,
 			pagingType: 'full_numbers',
 			pageLength: this.response.totalPages,
-
-		}
+			stateSave: false
+		};
 	}
 
 	ngAfterViewInit(): void {
@@ -71,11 +71,12 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 		});
 	}
 
-	handleClick(event: Event) {
-		let elementId = (event.target as Element).id;
-		this.studentsService.deleteStudent(elementId);
-		alert('Succesfully deleted student!');
-		this.rerender();
+	handleDelete(id) {
+		this.studentsService.deleteStudent(id).subscribe(res => {
+			alert('Succesfully deleted student!');
+			this.rerender();
+		});
+
 	  }
 
 	rerender(): void {
@@ -123,7 +124,7 @@ export class StudentsAdminComponent implements AfterViewInit, OnDestroy, OnInit 
 		}
 
 		const updatedStudent: Student = {
-			student_id: this.studentId,
+			id: this.studentId,
 			first_name: newFirstName,
 			last_name: newLastName,
 			index_number: newIndexNumber,

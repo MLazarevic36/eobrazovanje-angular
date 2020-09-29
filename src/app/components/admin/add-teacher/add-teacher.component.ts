@@ -1,7 +1,7 @@
 import { TeacherEngagement } from './../../../model/teacher-engagement';
 import { DataTablesResponse } from './../../../model/data-tables-response';
 import { CoursesService } from './../../../services/courses.service';
-import { User } from './../../../model/user/user';
+import { User } from '../../../model/user';
 import { UsersService } from './../../../services/users.service';
 import { TeachersService } from './../../../services/teachers.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -19,6 +19,9 @@ export class AddTeacherComponent implements OnInit {
 	addTeacherForm: FormGroup;
 	loading = false;
 	submitted = false;
+	selectedCourse;
+	selectedCourseName;
+	selectedRole;
 	courses;
 	engagements = [];
 
@@ -36,7 +39,7 @@ export class AddTeacherComponent implements OnInit {
 			password: [''],
 			firstName: [''],
 			lastName: [''],
-			courseId: [''],
+			course: [''],
 			teacherRole: ['']
 		});
 	}
@@ -49,15 +52,26 @@ export class AddTeacherComponent implements OnInit {
 
 	get f() { return this.addTeacherForm.controls; }
 
+	courseChange(e) {
+		let selectedIndex:number = e.target['selectedIndex'];
+		this.selectedCourse = e.target.options[selectedIndex].getAttribute('id');
+		this.selectedCourseName = e.target.options[selectedIndex].getAttribute('value');
+	}
+
+	roleChange(e) {
+		let selectedIndex:number = e.target['selectedIndex'];
+		this.selectedRole = e.target.options[selectedIndex].getAttribute('value');
+	}
+
 	handleClick() {
-		this.engagements.push({ course: this.f.courseId.value,
-								role: this.f.teacherRole.value});
+		this.engagements.push({	courseId: this.selectedCourse,
+								courseName: this.selectedCourseName,
+								role: this.selectedRole });
 		console.log(this.engagements);
 	}
 
-	handleDelete() {
-		var removeIndex = this.engagements.map(function(item) {return item.courseName; }).indexOf(1);
-		this.engagements.splice(removeIndex, 1);
+	handleDelete(i) {
+		this.engagements.splice(i, 1);
 
 	}
 
@@ -85,7 +99,7 @@ export class AddTeacherComponent implements OnInit {
 				accessToken: res.accessToken
 			};
 			const teacher: Teacher = {
-				teacher_id: null,
+				id: null,
 				first_name: this.f.firstName.value,
 				last_name: this.f.lastName.value,
 				user: newUser,
@@ -95,9 +109,9 @@ export class AddTeacherComponent implements OnInit {
 
 				for (var obj of this.engagements) {
 					const teacherEngagement: TeacherEngagement = {
-						teacher_engagement_id: null,
-						course: { course_id: obj.course},
-						teacher: { teacher_id: resTeacher.teacher_id},
+						id: null,
+						course: { id: obj.courseId},
+						teacher: {id: resTeacher.id},
 						teacher_role: obj.role,
 						deleted: false
 					};

@@ -13,7 +13,7 @@
 			<td>{{ registration.exam.course.name }}</td>
 			<td>{{ registration.exam.date}}</td>
 			<td>{{ registration.exam.location}}</td>
-			<td><mat-icon style="cursor: pointer;" (click)="unregister(registration.exam_registration_id)">cancel</mat-icon></td>
+			<td><mat-icon style="cursor: pointer;" (click)="unregister(registration.id)">cancel</mat-icon></td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="registrations?.length == 0">

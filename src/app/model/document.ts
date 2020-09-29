@@ -1,6 +1,6 @@
-import { Student } from './student/student';
+import { Student } from './student';
 export class Document {
-	document_id: number;
+	id: number;
 	name: string;
 	file: Blob;
 	student: Student;

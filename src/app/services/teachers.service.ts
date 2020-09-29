@@ -3,12 +3,11 @@ import { TeacherEngagementGet } from './../model/teacher-engagement-get';
 import { TeacherEngagement } from './../model/teacher-engagement';
 import { Teacher } from './../model/teacher';
 import { DataTablesResponse } from './../model/data-tables-response';
-import { map, catchError } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { ExamRegistration } from '../model/exams/exam-registration';
+import { ExamRegistration } from '../model/exam-registration';
 
 @Injectable({
 	providedIn: 'root'

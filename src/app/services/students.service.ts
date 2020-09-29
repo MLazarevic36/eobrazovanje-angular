@@ -1,7 +1,7 @@
 import { Document } from './../model/document';
-import { Student } from './../model/student/student';
-import { Term } from './../model/exams/term';
-import { AddStudent } from './../model/student/add_student';
+import { Student } from '../model/student';
+import { Term } from '../model/term';
+import { AddStudent } from '../model/add_student';
 import { DataTablesResponse } from './../model/data-tables-response';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from './../../environments/environment';

@@ -6,7 +6,7 @@
 	</thead>
 	<tbody *ngIf="courses?.length != 0">
 		<tr *ngFor="let course of courses">
-			<td><a (click)="redirect(course.course.course_id)" style="color: blue;">{{ course.course.name }}</a></td>
+			<td><a (click)="redirect(course.course.id)" style="color: blue;">{{ course.course.name }}</a></td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="courses?.length == 0">

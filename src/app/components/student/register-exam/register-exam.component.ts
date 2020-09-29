@@ -1,10 +1,10 @@
 import { element } from 'protractor';
 import { catchError } from 'rxjs/operators';
-import { ExamRegistration } from './../../../model/exams/exam-registration';
-import { Exam } from './../../../model/exams/exam';
-import { Student } from './../../../model/student/student';
+import { ExamRegistration } from '../../../model/exam-registration';
+import { Exam } from '../../../model/exam';
+import { Student } from '../../../model/student';
 import { StudentsService } from './../../../services/students.service';
-import { Term } from './../../../model/exams/term';
+import { Term } from '../../../model/term';
 import { ExamsService } from './../../../services/exams.service';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -64,36 +64,22 @@ export class RegisterExamComponent implements AfterViewInit, OnDestroy, OnInit  
 	registerExam(id, event: any): void {
 		const studentId = localStorage.getItem('student_id');
 		const examRegistration: ExamRegistration = {
-			exam_registration_id: null,
+			id: null,
 			colloquium_points: 0,
 			exam_points: 0,
 			grade: 5,
 			status: 'ACTIVE',
-			exam: { exam_id : Number(id)},
-			student: { student_id: Number(studentId)},
+			exam: { id : Number(id)},
+			student: { id: Number(studentId)},
 			registered: true,
 			deleted: false
 		};
+		console.log(examRegistration);
 		this.examsService.registerExam(examRegistration).subscribe(res => {
 			alert('Succesfully registered exam!');
 			(event.target as HTMLElement).innerText = 'checkbox';
 			(event.target as HTMLElement).style.cursor = 'auto';
 		});
 	}
-
-	// rerender(): void {
-	// 	const studentId = localStorage.getItem('student_id');
-	// 	this.dtElements.forEach((dtElement: DataTableDirective) => {
-	// 		dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-	// 			dtInstance.destroy();
-	// 			this.examsService.getStudentsTerms(studentId).subscribe((termsList: Term[]) => {
-	// 				this.terms = termsList;
-	// 				setTimeout(() => {
-	// 				this.dtTrigger.next();
-	// 				});
-	// 		});
-	// 	});
-	// });
-
 
 }

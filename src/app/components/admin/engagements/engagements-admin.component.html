@@ -11,12 +11,12 @@
 	</thead>
 	<tbody *ngIf="engagements?.length != 0">
 		<tr *ngFor="let engagement of engagements">
-			<td>{{ engagement.teacher_engagement_id }}</td>
+			<td>{{ engagement.id }}</td>
 			<td>{{ engagement.course.name }}</td>
 			<td>{{ engagement.teacher.first_name }}</td>
 			<td>{{ engagement.teacher.last_name }}</td>
 			<td>{{ engagement.teacher_role }}</td>
-			<td><a><mat-icon (click)='remove(engagement.teacher_engagement_id)' style="color: black;">delete</mat-icon></a></td>
+			<td><a><mat-icon (click)='remove(engagement.id)' style="color: black;">delete</mat-icon></a></td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="engagements?.length == 0">

@@ -1,12 +1,11 @@
-import { ExamRegistration } from './../model/exams/exam-registration';
-import { Term } from './../model/exams/term';
+import { ExamRegistration } from '../model/exam-registration';
+import { Term } from '../model/term';
 import { DataTablesResponse } from './../model/data-tables-response';
-import { map, catchError } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Exam } from '../model/exams/exam';
+import { Exam } from '../model/exam';
 
 @Injectable({
 	providedIn: 'root'

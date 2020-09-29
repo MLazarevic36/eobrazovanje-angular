@@ -1,3 +1,4 @@
+<app-nav-menu></app-nav-menu>
 <div class="card">
 	<h1>{{courseName}}</h1>
 </div>
@@ -6,7 +7,7 @@
 	<div id="header">
 		<h3>Students enrolled to this course: </h3>
 	</div>
-	<div id="addButton">
+	<div id="addButton" *ngIf='role !== "STUDENT"'>
 		<label>Add new student to this course</label>
 		<a><mat-icon (click)="showForm()" style="margin: auto; color: black;">add_circle</mat-icon></a>
 	</div>
@@ -42,7 +43,7 @@
 			<td>{{ enrollment.student.index_number }}</td>
 			<td>{{ enrollment.student.first_name }}</td>
 			<td>{{ enrollment.student.last_name }}</td>
-			<td><a><mat-icon (click)="removeEnrollment(enrollment.course_enrollment_id)" style="color: black;">delete</mat-icon></a></td>
+			<td *ngIf='role !== "STUDENT"'><a><mat-icon (click)="removeEnrollment(enrollment.id)" style="color: black;">delete</mat-icon></a></td>
 		</tr>
 	</tbody>
 	<tbody *ngIf="enrollments?.length == 0">

@@ -1,5 +1,5 @@
 export class ExamRegistrationGet {
-	exam_registration_id: number;
+	id: number;
 	colloquium_points: number;
 	exam_points: number;
 	grade: number;

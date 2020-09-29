@@ -25,10 +25,10 @@
 		<tr *ngFor="let document of documents">
 			<td>{{ document.name }}</td>
 			<td>
-				<a (click)='download(document.document_id, document.name)'><mat-icon style="color: black;">cloud_download</mat-icon></a>
+				<a (click)='download(document.id, document.name)'><mat-icon style="color: black;">cloud_download</mat-icon></a>
 			</td>
 			<td>
-				<a><mat-icon (click)='delete(document.document_id)' style="color: black;">delete</mat-icon></a>
+				<a><mat-icon (click)='delete(document.id)' style="color: black;">delete</mat-icon></a>
 			</td>
 		</tr>
 	</tbody>

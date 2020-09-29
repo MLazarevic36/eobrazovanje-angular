@@ -56,7 +56,7 @@ export class ViewEngagementsComponent implements AfterViewInit, OnDestroy, OnIni
 	}
 
 	redirect(id): void {
-		this.router.navigate(['teacher/course', id]);
+		this.router.navigate(['course', id]);
 
 	}
 

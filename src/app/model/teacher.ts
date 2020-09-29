@@ -1,9 +1,8 @@
-import { User } from 'src/app/model/user/user';
+import { User } from 'src/app/model/user';
 export class Teacher {
-	teacher_id: number;
+	id: number;
 	first_name: string;
 	last_name: string;
 	user: User;
-	engagements?: [];
 	deleted: boolean;
 }
