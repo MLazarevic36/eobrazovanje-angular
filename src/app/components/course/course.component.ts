@@ -32,7 +32,9 @@ export class CourseComponent implements OnInit {
 		private route: ActivatedRoute,
 		private courseService: CoursesService,
 		private formBuilder: FormBuilder
-	) { }
+	) {
+
+	}
 
 	ngOnInit(): void {
 		this.courseId = this.route.snapshot.paramMap.get('id');
